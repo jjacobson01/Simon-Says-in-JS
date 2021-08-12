@@ -1,0 +1,199 @@
+
+body {
+    background-color: darkgray;
+}
+
+.container{
+    position: relative;
+    margin: 15% auto;
+    border-radius: 1000px;
+    border: solid 15px black;
+    background-color: black;
+    width: 1000px;
+    height: 1000px; 
+}
+
+/*center button*/
+.center{
+    background-color: black;
+    z-index: 1;
+    position: absolute;
+    background: black;
+    border-radius: 75%;
+    height: 400px;
+    width: 400px;
+    border-style: solid;
+    border-width: 10px;
+    top: 50%;
+    left: 50%;
+    margin-top: -175px;
+    margin-left: -200px;
+    box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    -webkit-box-sizing: border-box;
+
+  
+}
+
+#power{
+    text-align: center;
+    color: black;
+    margin-top: 5%;
+    margin-left: 45%;
+    font-size: 20px;
+    border-radius: 50%;
+    width: 25px;
+    height: 25px;
+    background-color: grey;
+    outline: none;
+}
+#title{
+    text-align: center;
+    color: white;
+    margin-top: 5%;
+    font-size: 65px;
+    font-weight: 700;
+}
+
+.buttons{
+    display: flex;
+    justify-content: center;
+    margin-top: 5%;
+    margin-left: 5%;
+    align-items: center;
+
+}
+#start{
+    color: black;
+    font-size: 40px;
+    font-weight: 700;
+    background-color: red;
+    margin-left: -5%;
+    border-radius: 25px;
+    width: 150px;
+    height: 75px;
+    outline: none;
+
+}
+#repeat{
+    color: rgb(0, 0, 0);
+    font-size: 40px;
+    font-weight: 700;
+
+    margin-left: 10%;
+    background-color: green;
+    border-radius: 25px;
+    width: 150px;
+    height: 75px;
+    outline: none;
+
+}
+#score{
+    background-color: rgb(44, 29, 29);
+    margin-top: 8%;
+    color: red;
+    font-weight: 900;
+    font-size: 35px;
+    text-align: center;
+    font-family: courier;
+  
+    height: 30px;
+    width: 80px;
+    margin-left: 150px;
+    
+    
+    line-height: 30px;
+}
+#level{
+    color: white;
+    font-size: 30px;
+    margin-left: 152px;
+    
+}
+
+#easy{
+    background-color: white;
+
+    outline: none;
+    margin-left: -5%;
+    border-radius: 25%;
+    font-size:  20px;
+    font-weight: 700;
+
+}
+#hard{
+    background-color: white;
+    outline: none;
+    border-radius: 25%;
+    font-size:  20px;
+    margin-left: 3%;
+    font-weight: 700;
+}
+
+  
+
+.chart{
+    position: relative;
+    display: inline-block;
+    width: 488px;
+    height: 488px;
+    /*allow mouse click*/
+    cursor: pointer;
+}
+
+/*green only*/
+#green{
+    border-top-left-radius: 100%;
+    background-color: green;
+    border: solid 5px black; 
+}
+#green:hover{
+    /* background-color: lightgreen; */
+    box-shadow: 0 0 155px 0 darkgreen;
+    /* box-sizing: border-box; */
+}
+
+
+/*red only*/
+#red{
+    border-top-right-radius: 100%;
+    background-color: red;
+    border: solid 5px black; 
+}
+#red:hover{
+    /* background-color: rgb(252, 96, 96); */
+    box-shadow: 0 0 155px 0 darkred;
+    /* box-sizing: border-box; */
+
+}
+
+
+/*blue only*/
+#blue{
+    position: absolute;
+    border-bottom-right-radius: 100%;
+    background-color:blue;
+    border: solid 5px black;
+}
+#blue:hover{
+    /* background-color:lightskyblue; */
+    box-shadow: 0 0 155px 0 darkblue;
+    /* box-sizing: border-box; */
+
+}
+
+
+/*yellow only*/
+#yellow{
+    border-bottom-left-radius: 100%;
+    background-color: rgb(180, 180, 17);
+    border: solid 5px black;
+}
+#yellow:hover{
+    /* background-color: lightyellow; */
+    box-shadow: 0 0 155px 0 rgb(151, 151, 0);
+    /* box-sizing: border-box; */
+
+}
+
+

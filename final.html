@@ -1,11 +1,68 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
+    <link rel="shortcut icon" href="#" />
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <script defer src="./index.js"></script>
+    <link rel="stylesheet" href="./style.css">
+    <title>Simon Says</title>
+
+
+    <audio id="greenSound">
+        <source src="https://s3.amazonaws.com/freecodecamp/simonSound1.mp3">
+        </source>
+    </audio>
+    <audio id="redSound">
+        <source src="https://s3.amazonaws.com/freecodecamp/simonSound2.mp3">
+        </source>
+    </audio>
+    <audio id="blueSound">
+        <source src="https://s3.amazonaws.com/freecodecamp/simonSound3.mp3">
+        </source>
+    </audio>
+    <audio id="yellowSound">
+        <source src="https://s3.amazonaws.com/freecodecamp/simonSound4.mp3">
+        </source>
+    </audio>
 </head>
+
 <body>
-    <h1>Hello World!</h1>
+
+    <div class="container">
+        <div>
+            <div id="green" class="chart"></div>
+            <div id="red" class="chart"></div>
+        </div>
+
+        <div>
+            <div id="yellow" class="chart"></div>
+            <div id="blue" class="chart"></div>
+        </div>
+        <div class="center">
+            <button id="power"></button>
+            <div id="title"> SIMON</div>
+            <div>
+                <div class="buttons" >
+                    <button id="start" class= "startFont">Start</button>
+                    <button id="repeat" onclick="">Repeat</button>
+                </div>
+                <div id="score"> </div>
+                <div id="level">Level</div>
+                <div class="buttons">
+                    <button id="easy">Easy</button>
+                    <button id="hard" onclick="">Hard</button>
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+
+
+
+
 </body>
+
 </html>
