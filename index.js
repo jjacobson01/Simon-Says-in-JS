@@ -1,25 +1,19 @@
 let trackOrder = [];
 let playerOrder = [];
-
 //the flash count per turn
 let flashCount;
 //
 let intervalId;
-
 //the # of turns completed so far
 let turn;
-
 //bool to show if player won
 let win;
-
 //bool to check if player is correct
 let correct;
-
 let powerOn = false;
-
 let sound = true;
-
 let difficulty = false;
+let clickable = false;
 
 const green = document.getElementById("green");
 const red = document.getElementById("red");
@@ -31,15 +25,18 @@ const repeat = document.getElementById("repeat");
 const turnCount = document.getElementById("score");
 const easy = document.getElementById("easy");
 const hard = document.getElementById('hard');
+const disable = document.getElementsByClassName("offClick");
 
 powerbtn.addEventListener('click', (e) => {
     if (!powerOn) {
         powerOn = true;
         powerbtn.style.backgroundColor = "red";
+        easy.style.backgroundColor = "tomato";
+
         powerbtn.style.color = "red";
         turnCount.innerHTML = "Hi!";
         setTimeout(() => {
-            turnCount.innerHTML = "0";
+            turnCount.innerHTML = "";
         }, 1000)
 
     }
@@ -53,14 +50,42 @@ powerbtn.addEventListener('click', (e) => {
     }
 });
 
+//main function, controls when the user goes and when the computer goes. Calls gameTurn function
+
 start.addEventListener('click', (e) => {
-    if (win || powerOn) {
-        playGame();
+    if (powerOn) {
+        //clickable = true;
+        win = false;
+        trackOrder = [];
+        playerOrder = [];
+        flashCount = 0;
+        intervalId = 0;
+        turn = 1;
+        turnCount.innerHTML = 1;
+        correct = true;
+
+        for (let i = 0; i < 20; i++) {
+            trackOrder.push(Math.floor(Math.random() * 4) + 1);
+        }
+        console.log(trackOrder);
+        compTurn = true;
+        if (!difficulty) {
+            intervalId = setInterval(gameTurn, 800);
+        }
+        else if (difficulty) {
+            intervalId = setInterval(gameTurn, 400);
+        }
+        else {
+            console.log("playGame() not working!");
+        }
     }
+        //clickable = true;
+
+
 });
 
 repeat.addEventListener('click', (e) => {
-    if(powerOn){
+    if (powerOn) {
         clearColor();
         turnCount.innerHTML = turn;
         compTurn = true;
@@ -81,33 +106,7 @@ repeat.addEventListener('click', (e) => {
 });
 
 
-//main function, controls when the user goes and when the computer goes. Calls gameTurn function
-function playGame() {
 
-    win = false;
-    trackOrder = [];
-    playerOrder = [];
-    flashCount = 0;
-    intervalId = 0;
-    turn = 1;
-    turnCount.innerHTML = 1;
-    correct = true;
-
-    for (let i = 0; i < 20; i++) {
-        trackOrder.push(Math.floor(Math.random() * 4) + 1);
-    }
-    console.log(trackOrder);
-    compTurn = true;
-    if (!difficulty) {
-        intervalId = setInterval(gameTurn, 800);
-    }
-    else if (difficulty) {
-        intervalId = setInterval(gameTurn, 400);
-    }
-    else {
-        console.log("playGame() not working!");
-    }
-}
 
 easy.addEventListener('click', (e) => {
     if (powerOn) {
@@ -149,7 +148,8 @@ function gameTurn() {
             clearColor();
         }
         if (compTurn) {
-
+            //disable.style.pointerEvents = 'none';
+            //pointer-events: none;
             if (!difficulty) {
                 setTimeout(() => {
                     if (trackOrder[flashCount] == 1) { greenAudio() };
@@ -180,10 +180,16 @@ function gameTurn() {
 
     }
     else if (!powerOn) {
+        flashColor();
         clearColor();
         turnCount.innerHTML = "";
-
-
+        win = false;
+        trackOrder = [];
+        playerOrder = [];
+        flashCount = 0;
+        intervalId = 0;
+        correct = true;
+        turn = 0;
     }
 
 }
@@ -250,6 +256,7 @@ function flashColorWin(i) {
 
 }
 
+
 function greenAudio() {
     if (sound) {
         const audio = document.getElementById("greenSound");
@@ -290,62 +297,74 @@ function yellowAudio() {
 
 
 green.addEventListener('click', (e) => {
-    //green.style = "box-sizing: border-box";
-    playerOrder.push(1);
-    check();
-    greenAudio();
-
-    if (!win) {
-        setTimeout(() => {
-            clearColor();
-        }, 200);
+    if(powerOn){
+        playerOrder.push(1);
+        check();
+        greenAudio();
+    
+        if (!win) {
+            setTimeout(() => {
+                clearColor();
+            }, 200);
+        }
     }
+    //green.style = "box-sizing: border-box";
+
 });
 
 red.addEventListener('click', (e) => {
-    //red.style = "box-sizing: border-box";
-    playerOrder.push(2);
+    if(powerOn){
+        playerOrder.push(2);
 
-    check();
-    redAudio();
-    if (!win) {
-        setTimeout(() => {
-            clearColor();
-        }, 200);
+        check();
+        redAudio();
+        if (!win) {
+            setTimeout(() => {
+                clearColor();
+            }, 200);
+        }
     }
+    //red.style = "box-sizing: border-box";
+
 });
 
 blue.addEventListener('click', (e) => {
     //blue.style = "box-sizing: border-box";
 
-    playerOrder.push(3);
-    check();
-    blueAudio();
-    if (!win) {
-        setTimeout(() => {
-            clearColor();
-        }, 200);
+    if(powerOn){
+        playerOrder.push(3);
+        check();
+        blueAudio();
+        if (!win) {
+            setTimeout(() => {
+                clearColor();
+            }, 200);
+        }
     }
+
 });
 
 yellow.addEventListener('click', (e) => {
-
-    //yellow.style = "box-sizing: border-box";
-    playerOrder.push(4);
-    check();
-    yellowAudio();
-    if (!win) {
-        setTimeout(() => {
-            clearColor();
-        }, 200);
+    if(powerOn){
+        playerOrder.push(4);
+        check();
+        yellowAudio();
+        if (!win) {
+            setTimeout(() => {
+                clearColor();
+            }, 200);
+        }
     }
-});
+    //yellow.style = "box-sizing: border-box";
 
+});
+ 
 function check() {
     if (playerOrder[playerOrder.length - 1] != trackOrder[playerOrder.length - 1]) {
         correct = false;
     }
-    if (playerOrder.length == 7 && correct) {
+    //control game win turn
+    if (playerOrder.length == 5 && correct) {
         winner();
     }
 
@@ -402,6 +421,19 @@ function winner() {
     for (let i = 0; i < 20; i++) {
         flashColorWin(i);
     }
+    setTimeout(()=>{
+        flashColor();
+        clearColor();
+        turnCount.innerHTML = "";
+        win = false;
+        trackOrder = [];
+        playerOrder = [];
+        flashCount = 0;
+        intervalId = 0;
+        correct = true;
+        turn = 0;
+    },2000)
+   
 
 }
 
